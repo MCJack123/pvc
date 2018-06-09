@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		047B325E20CC6CF7009AE053 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B325D20CC6CF7009AE053 /* main.cpp */; };
+		047B326620CC6E22009AE053 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326420CC6E22009AE053 /* util.cpp */; };
+		047B326920CC6E85009AE053 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326820CC6E85009AE053 /* libcurl.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,9 @@
 /* Begin PBXFileReference section */
 		047B325A20CC6CF7009AE053 /* pvc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pvc; sourceTree = BUILT_PRODUCTS_DIR; };
 		047B325D20CC6CF7009AE053 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		047B326420CC6E22009AE053 /* util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		047B326520CC6E22009AE053 /* util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = util.hpp; sourceTree = "<group>"; };
+		047B326820CC6E85009AE053 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047B326920CC6E85009AE053 /* libcurl.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +49,7 @@
 			children = (
 				047B325C20CC6CF7009AE053 /* pvc */,
 				047B325B20CC6CF7009AE053 /* Products */,
+				047B326720CC6E85009AE053 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +65,18 @@
 			isa = PBXGroup;
 			children = (
 				047B325D20CC6CF7009AE053 /* main.cpp */,
+				047B326420CC6E22009AE053 /* util.cpp */,
+				047B326520CC6E22009AE053 /* util.hpp */,
 			);
 			path = pvc;
+			sourceTree = "<group>";
+		};
+		047B326720CC6E85009AE053 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				047B326820CC6E85009AE053 /* libcurl.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047B325E20CC6CF7009AE053 /* main.cpp in Sources */,
+				047B326620CC6E22009AE053 /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
