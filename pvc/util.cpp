@@ -8,8 +8,6 @@
 
 #include "util.hpp"
 
-CURL * handle;
-
 typedef struct {
     char * data;
     size_t size;
@@ -38,8 +36,10 @@ size_t read_data(char * buffer, size_t size, size_t nitems, void * instream) {
 
 http_response http_get(std::string url) {
     http_response retval;
+    CURL * handle;
     handle = curl_easy_init();
     curl_easy_setopt(handle, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(handle, CURLOPT_PORT, 28100);
     curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_data);
     curl_easy_setopt(handle, CURLOPT_WRITEDATA, &retval);
     CURLcode result = curl_easy_perform(handle);
@@ -51,6 +51,7 @@ http_response http_get(std::string url) {
     }
     retval.ok = true;
     curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &retval.response_code);
+    curl_easy_cleanup(handle);
     return retval;
 }
 
@@ -60,8 +61,10 @@ http_response http_post(std::string url, void * data, size_t size) {
     buf.data = (char*)data;
     buf.size = size;
     buf.offset = 0;
+    CURL * handle;
     handle = curl_easy_init();
     curl_easy_setopt(handle, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(handle, CURLOPT_PORT, 28100);
     curl_easy_setopt(handle, CURLOPT_READFUNCTION, read_data);
     curl_easy_setopt(handle, CURLOPT_READDATA, (void*)&buf);
     CURLcode result = curl_easy_perform(handle);
@@ -72,6 +75,7 @@ http_response http_post(std::string url, void * data, size_t size) {
     }
     retval.ok = true;
     curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &retval.response_code);
+    curl_easy_cleanup(handle);
     return retval;
 }
 
@@ -93,6 +97,27 @@ void writeFile(std::string file, void * data, size_t size) {
     std::ofstream out(file.c_str());
     out.write((char*)data, size);
     out.close();
+}
+
+url_descriptor parseURL(std::string url) {
+    url_descriptor retval;
+    retval.full_url = url;
+    retval.uri = url.substr(0, url.find_first_of("/"));
+    retval.endpoint = url.substr(url.find_first_of(retval.uri), url.find_first_of("?") - url.find_first_of(retval.uri));
+    std::string querystr = url.substr(url.find_first_of("?"));
+    std::stringstream ss(querystr.c_str());
+    std::string to;
+    while (std::getline(ss, to, '&')) {
+        retval.query[to.substr(0, to.find_first_of("="))] = to.substr(to.find_first_of("="));
+    }
+    return retval;
+}
+
+Json::Value parseJSON(std::string json) {
+    Json::Value root;
+    std::stringstream ss(json.c_str());
+    ss >> root;
+    return root;
 }
 
 

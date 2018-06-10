@@ -10,6 +10,13 @@
 		047B325E20CC6CF7009AE053 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B325D20CC6CF7009AE053 /* main.cpp */; };
 		047B326620CC6E22009AE053 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326420CC6E22009AE053 /* util.cpp */; };
 		047B326920CC6E85009AE053 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326820CC6E85009AE053 /* libcurl.tbd */; };
+		047B326C20CC8631009AE053 /* fetch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326A20CC8631009AE053 /* fetch.cpp */; };
+		047B326E20CCBDBD009AE053 /* libuWS.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326D20CCBDBD009AE053 /* libuWS.dylib */; };
+		047B327120CCC815009AE053 /* query.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326F20CCC815009AE053 /* query.cpp */; };
+		047B327320CCCD66009AE053 /* libuv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327220CCCD66009AE053 /* libuv.1.dylib */; };
+		047B327520CCCD83009AE053 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327420CCCD83009AE053 /* libz.1.dylib */; };
+		047B327720CCCD97009AE053 /* libssl.1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */; };
+		047B327920CCD0A4009AE053 /* libjsoncpp.1.8.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +37,15 @@
 		047B326420CC6E22009AE053 /* util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		047B326520CC6E22009AE053 /* util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = util.hpp; sourceTree = "<group>"; };
 		047B326820CC6E85009AE053 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
+		047B326A20CC8631009AE053 /* fetch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fetch.cpp; sourceTree = "<group>"; };
+		047B326B20CC8631009AE053 /* fetch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fetch.hpp; sourceTree = "<group>"; };
+		047B326D20CCBDBD009AE053 /* libuWS.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libuWS.dylib; sourceTree = "<group>"; };
+		047B326F20CCC815009AE053 /* query.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = query.cpp; sourceTree = "<group>"; };
+		047B327020CCC815009AE053 /* query.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = query.hpp; sourceTree = "<group>"; };
+		047B327220CCCD66009AE053 /* libuv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libuv.1.dylib; path = ../../../../../usr/local/Cellar/libuv/1.20.3/lib/libuv.1.dylib; sourceTree = "<group>"; };
+		047B327420CCCD83009AE053 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
+		047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.0.0.dylib; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_1/lib/libssl.1.0.0.dylib; sourceTree = "<group>"; };
+		047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjsoncpp.1.8.4.dylib; path = ../../../../../usr/local/Cellar/jsoncpp/1.8.4/lib/libjsoncpp.1.8.4.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +53,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047B327920CCD0A4009AE053 /* libjsoncpp.1.8.4.dylib in Frameworks */,
+				047B327720CCCD97009AE053 /* libssl.1.0.0.dylib in Frameworks */,
+				047B327520CCCD83009AE053 /* libz.1.dylib in Frameworks */,
+				047B327320CCCD66009AE053 /* libuv.1.dylib in Frameworks */,
+				047B326E20CCBDBD009AE053 /* libuWS.dylib in Frameworks */,
 				047B326920CC6E85009AE053 /* libcurl.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +86,10 @@
 			isa = PBXGroup;
 			children = (
 				047B325D20CC6CF7009AE053 /* main.cpp */,
+				047B326A20CC8631009AE053 /* fetch.cpp */,
+				047B326B20CC8631009AE053 /* fetch.hpp */,
+				047B326F20CCC815009AE053 /* query.cpp */,
+				047B327020CCC815009AE053 /* query.hpp */,
 				047B326420CC6E22009AE053 /* util.cpp */,
 				047B326520CC6E22009AE053 /* util.hpp */,
 			);
@@ -74,6 +99,11 @@
 		047B326720CC6E85009AE053 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */,
+				047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */,
+				047B327420CCCD83009AE053 /* libz.1.dylib */,
+				047B327220CCCD66009AE053 /* libuv.1.dylib */,
+				047B326D20CCBDBD009AE053 /* libuWS.dylib */,
 				047B326820CC6E85009AE053 /* libcurl.tbd */,
 			);
 			name = Frameworks;
@@ -135,6 +165,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047B327120CCC815009AE053 /* query.cpp in Sources */,
+				047B326C20CC8631009AE053 /* fetch.cpp in Sources */,
 				047B325E20CC6CF7009AE053 /* main.cpp in Sources */,
 				047B326620CC6E22009AE053 /* util.cpp in Sources */,
 			);
@@ -256,6 +288,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/usr/local/Cellar/openssl/1.0.2o_1/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/usr/local/Cellar/libuv/1.20.3/lib,
+					/usr/local/Cellar/openssl/1.0.2o_1/lib,
+					/usr/local/Cellar/jsoncpp/1.8.4/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -264,6 +307,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/usr/local/Cellar/openssl/1.0.2o_1/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/usr/local/Cellar/libuv/1.20.3/lib,
+					/usr/local/Cellar/openssl/1.0.2o_1/lib,
+					/usr/local/Cellar/jsoncpp/1.8.4/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
