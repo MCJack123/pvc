@@ -17,6 +17,8 @@
 		047B327520CCCD83009AE053 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327420CCCD83009AE053 /* libz.1.dylib */; };
 		047B327720CCCD97009AE053 /* libssl.1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */; };
 		047B327920CCD0A4009AE053 /* libjsoncpp.1.8.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */; };
+		049B329020D089280019D52E /* pull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 049B328E20D089280019D52E /* pull.cpp */; };
+		049B329320D08A660019D52E /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 049B329120D08A660019D52E /* patch.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +48,10 @@
 		047B327420CCCD83009AE053 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.0.0.dylib; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_1/lib/libssl.1.0.0.dylib; sourceTree = "<group>"; };
 		047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjsoncpp.1.8.4.dylib; path = ../../../../../usr/local/Cellar/jsoncpp/1.8.4/lib/libjsoncpp.1.8.4.dylib; sourceTree = "<group>"; };
+		049B328E20D089280019D52E /* pull.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pull.cpp; sourceTree = "<group>"; };
+		049B328F20D089280019D52E /* pull.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pull.hpp; sourceTree = "<group>"; };
+		049B329120D08A660019D52E /* patch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = patch.cpp; sourceTree = "<group>"; };
+		049B329220D08A660019D52E /* patch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = patch.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,10 @@
 				047B325D20CC6CF7009AE053 /* main.cpp */,
 				047B326A20CC8631009AE053 /* fetch.cpp */,
 				047B326B20CC8631009AE053 /* fetch.hpp */,
+				049B328E20D089280019D52E /* pull.cpp */,
+				049B328F20D089280019D52E /* pull.hpp */,
+				049B329120D08A660019D52E /* patch.cpp */,
+				049B329220D08A660019D52E /* patch.hpp */,
 				047B326F20CCC815009AE053 /* query.cpp */,
 				047B327020CCC815009AE053 /* query.hpp */,
 				047B326420CC6E22009AE053 /* util.cpp */,
@@ -167,7 +177,9 @@
 			files = (
 				047B327120CCC815009AE053 /* query.cpp in Sources */,
 				047B326C20CC8631009AE053 /* fetch.cpp in Sources */,
+				049B329320D08A660019D52E /* patch.cpp in Sources */,
 				047B325E20CC6CF7009AE053 /* main.cpp in Sources */,
+				049B329020D089280019D52E /* pull.cpp in Sources */,
 				047B326620CC6E22009AE053 /* util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

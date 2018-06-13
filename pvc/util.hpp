@@ -34,6 +34,8 @@ typedef struct {
     std::map<std::string, std::string> query;
 } url_descriptor;
 
+typedef std::vector<std::string> strvec;
+
 // Sends an HTTP GET request to url.
 http_response http_get(std::string url);
 
@@ -51,5 +53,11 @@ url_descriptor parseURL(std::string url);
 
 // Parses a json string.
 Json::Value parseJSON(std::string json);
+
+// Converts file data to string.
+std::string convertFileData(void * filepointer2);
+
+// Gets a list of files in the directory.
+strvec listDir(std::string directory);
 
 #endif /* util_hpp */

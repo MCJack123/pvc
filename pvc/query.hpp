@@ -15,7 +15,7 @@
 typedef struct {
     std::string name;
     std::string creator;
-    std::vector<std::string> nodes;
+    strvec nodes;
     int commits;
 } repo_info;
 
@@ -23,7 +23,7 @@ typedef struct {
 bool queryURL(std::string url);
 
 // Get list of repositories at url.
-std::vector<std::string> getRepos(std::string url);
+strvec getRepos(std::string url);
 
 // Get information about a repository.
 repo_info getInfo(std::string url, std::string name);

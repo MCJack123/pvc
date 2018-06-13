@@ -120,4 +120,41 @@ Json::Value parseJSON(std::string json) {
     return root;
 }
 
+std::string convertFileData(void * filepointer2) {
+    char * filepointer = (char*)filepointer2;
+    int32_t size = ((int32_t*)filepointer)[0];
+    char * filedata = (char*)malloc(size + 1);
+    memcpy((void*)filedata, (void*)&filepointer[4], size);
+    filedata[size] = '\0';
+    return std::string(const_cast<const char *>(filedata));
+}
 
+#if defined(__WIN32__) || defined(__WIN64__)
+#include <windows.h>
+strvec listDir(std::string directory) {
+    strvec v;
+    std::string pattern(directory);
+    pattern.append("\\*");
+    WIN32_FIND_DATA data;
+    HANDLE hFind;
+    if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
+        do {
+            v.push_back(data.cFileName);
+        } while (FindNextFile(hFind, &data) != 0);
+        FindClose(hFind);
+    }
+}
+#else
+#include <sys/types.h>
+#include <dirent.h>
+strvec listDir(std::string directory) {
+    strvec v;
+    DIR* dirp = opendir(directory.c_str());
+    struct dirent * dp;
+    while ((dp = readdir(dirp)) != NULL) {
+        v.push_back(dp->d_name);
+    }
+    closedir(dirp);
+    return v;
+}
+#endif
