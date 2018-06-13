@@ -19,12 +19,12 @@ typedef enum {
     PATCH_NEW_FILE
 } patch_type;
 
-typedef struct {
+struct patch {
     std::string filename;
     int lineno;
     patch_type type;
     std::string content;
-} patch;
+};
 
 // Applies a patch to a string.
 std::string applyPatch(std::string text, patch p, int baseline = 0);

@@ -20,19 +20,19 @@
 #include <sstream>
 #include <map>
 
-typedef struct {
+struct http_response {
     bool ok; // whether the curl process completed successfully
     long response_code; // either the curl result or http response
     void * data; // returned data
     size_t size; // size of returned data
-} http_response;
+};
 
-typedef struct {
+struct url_descriptor {
     std::string full_url;
     std::string uri;
     std::string endpoint;
     std::map<std::string, std::string> query;
-} url_descriptor;
+};
 
 typedef std::vector<std::string> strvec;
 

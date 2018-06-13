@@ -16,9 +16,6 @@
 // After one node is discovered, the rest are searched for from the first one.
 // The files in the repository are then reconstructed from the commits from the repository.
 
-// Returns all nodes that are currently active and serving.
-strvec resolveNodes(std::string url);
-
-//
+//todo
 
 #endif /* fetch_hpp */
