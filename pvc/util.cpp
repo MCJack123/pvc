@@ -103,8 +103,8 @@ url_descriptor parseURL(std::string url) {
     url_descriptor retval;
     retval.full_url = url;
     retval.uri = url.substr(0, url.find_first_of("/"));
-    retval.endpoint = url.substr(url.find_first_of(retval.uri), url.find_first_of("?") - url.find_first_of(retval.uri));
-    std::string querystr = url.substr(url.find_first_of("?"));
+    retval.endpoint = url.substr(url.find_first_of("/"), url.find_first_of("?") - url.find_first_of("/"));
+    std::string querystr = url.substr(url.find_first_of("?")); 
     std::stringstream ss(querystr.c_str());
     std::string to;
     while (std::getline(ss, to, '&')) {
@@ -144,8 +144,18 @@ strvec listDir(std::string directory) {
         FindClose(hFind);
     }
 }
+
+bool fileExists (std::string name) {
+	if (FILE *file = fopen(name.c_str(), "r")) {
+		fclose(file);
+		return true;
+	} else {
+		return false;
+	}
+}
 #else
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <dirent.h>
 strvec listDir(std::string directory) {
     strvec v;
@@ -156,5 +166,10 @@ strvec listDir(std::string directory) {
     }
     closedir(dirp);
     return v;
+}
+
+bool fileExists (std::string name) {
+	struct stat buffer;
+	return (stat (name.c_str(), &buffer) == 0);
 }
 #endif

@@ -38,6 +38,7 @@ strvec resolveNodes(std::string url, std::string name, bool recurse) {
 commits getCommits(repo_info repo) {
     commits retval;
 	std::map<std::string, int> comcount;
+	strvec keys;
 	int total = 0;
 	for (std::string node : repo.nodes) {
 		if (!queryURL(node) || !queryRepo(node, repo.name)) continue;
@@ -45,7 +46,7 @@ commits getCommits(repo_info repo) {
 		if (resp.ok && resp.response_code == 200) {
 			Json::Value root = parseJSON(std::string(const_cast<const char *>((char*)resp.data), resp.size));
 			for (int i = 0; i < root["commits"].size(); i++) {
-				if (std::find(retval.begin(), retval.end(), root["commits"][i]["id"].asString()) == retval.end()) {
+				if (std::find(keys.begin(), keys.end(), root["commits"][i]["id"].asString()) == keys.end()) {
 					commit c;
 					c.id = root["commits"][i]["id"].asString();
 					c.creator = root["commits"][i]["creator"].asString();
@@ -63,6 +64,7 @@ commits getCommits(repo_info repo) {
 					}
 					retval.push_back(c);
 					comcount.insert(std::make_pair(root["commits"][i]["id"].asString(), 0));
+					keys.push_back(root["commits"][i]["id"].asString());
 				}
 				comcount[root["commits"][i]["id"].asString()]++;
 			}
@@ -70,19 +72,19 @@ commits getCommits(repo_info repo) {
 		}
 	}
 	for (auto i = comcount.begin(); i != comcount.end(); i++)
-		if (i->second != total)
-			for (commit u : retval)
-				if (u.id == i->first)
-					retval.erase(std::find(retval.begin(), retval.end(), u));
+		if (i->second < total / 2)
+			for (int u = 0; u < retval.size(); u++)
+				if (retval[u].id == i->first)
+					retval.erase(retval.begin() + u--);
 	std::sort(retval.begin(), retval.end(), sortCommits);
 	return retval;
 }
 
 commits getCommits(repo_info repo, time_t timestamp) {
 	commits retval = getCommits(repo);
-	for (commit u : retval)
-		if (u.timestamp < timestamp)
-			retval.erase(std::find(retval.begin(), retval.end(), u));
+	for (int u = 0; u < retval.size(); u++)
+		if (retval[u].timestamp < timestamp)
+			retval.erase(retval.begin() + u--);
 	return retval;
 }
 

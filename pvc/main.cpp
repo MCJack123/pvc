@@ -7,9 +7,15 @@
 //
 
 #include <iostream>
+#include "serve.hpp"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+	local_repo_info info;
+	info.name = "TestServer";
+	info.info.name = "TestServer";
+	info.info.creator = "JackMacWindows";
+	info.info.commits = 0;
+	std::cout << "Running server\n";
+	runServer(info);
+	return 0;
 }

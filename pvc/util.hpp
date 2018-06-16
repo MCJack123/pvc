@@ -10,6 +10,12 @@
 #ifndef util_hpp
 #define util_hpp
 
+#if defined(__WIN32__) || defined(__WIN64__)
+#define TEMP_DIR "C:\\Windows\\Temp\\"
+#else
+#define TEMP_DIR "/var/tmp/"
+#endif
+
 #include <json/json.h>
 #include <curl/curl.h>
 #include <curl/easy.h>
@@ -18,6 +24,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <map>
 
 struct http_response {
@@ -59,5 +66,8 @@ std::string convertFileData(void * filepointer2);
 
 // Gets a list of files in the directory.
 strvec listDir(std::string directory);
+
+// Checks if a file exists.
+bool fileExists(std::string name);
 
 #endif /* util_hpp */
