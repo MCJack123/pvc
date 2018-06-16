@@ -13,6 +13,8 @@
 #include "query.hpp"
 #include "patch.hpp"
 
+// The commit code may be externalized later.
+
 typedef enum {
     COMMIT_TYPE_NORMAL,
     COMMIT_TYPE_INITIAL,
@@ -26,7 +28,7 @@ struct commit {
     std::string creator_signature; // will change once the signature system is implemented
     std::string title;
     std::string description;
-    unsigned long timestamp;
+    time_t timestamp;
     std::vector<patch> patches;
 };
 
@@ -35,7 +37,7 @@ struct special_commit : commit {
     std::map<std::string, std::string> info;
 }; // idk, whatever
 
-typedef std::map<std::string, commit> commits;
+typedef std::vector<commit> commits;
 
 // Returns all nodes that are currently active and serving.
 strvec resolveNodes(std::string url, std::string name, bool recurse = true);
@@ -43,7 +45,10 @@ strvec resolveNodes(std::string url, std::string name, bool recurse = true);
 // Downloads a list of commit information.
 commits getCommits(repo_info repo);
 
+// Downloads all commits after a timestamp.
+commits getCommits(repo_info repo, time_t timestamp);
+
 // Reconstructs a directory from a list of commits.
-void reconstructDir(commits c);
+void reconstructDir(commits c, std::string dir);
 
 #endif /* pull_hpp */

@@ -13,7 +13,7 @@
 #include <json/json.h>
 #include <curl/curl.h>
 #include <curl/easy.h>
-#include <uWS/uWS.h>
+#include "uWS/uWS.h"
 #include <string>
 #include <vector>
 #include <fstream>

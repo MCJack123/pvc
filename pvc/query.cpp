@@ -10,8 +10,13 @@
 
 bool queryURL(std::string url) {
     http_response resp = http_get(url);
-    if (!resp.ok || resp.response_code != 200 || resp.size > 18 || resp.size < 10 || std::string((char*)resp.data) != "Powered by pvc") return false;
-    else return true;
+	return !(!resp.ok || resp.response_code != 200 || resp.size > 18 || resp.size < 10 || std::string((char*)resp.data) != "Powered by pvc");
+}
+
+bool queryRepo(std::string url, std::string name) {
+	if (!queryURL(url)) return false;
+	http_response resp = http_get(url + "/repos/" + name);
+	return resp.ok && resp.response_code == 200;
 }
 
 strvec getRepos(std::string url) {

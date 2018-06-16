@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041D03DA20D46421000101A5 /* libjsoncpp.1.8.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */; };
+		041D03DC20D4644C000101A5 /* libuv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03DB20D4644C000101A5 /* libuv.1.dylib */; };
+		041D03DE20D4646E000101A5 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03DD20D4646E000101A5 /* libz.1.dylib */; };
+		041D03E020D46488000101A5 /* libssl.35.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03DF20D46488000101A5 /* libssl.35.dylib */; };
 		047B325E20CC6CF7009AE053 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B325D20CC6CF7009AE053 /* main.cpp */; };
 		047B326620CC6E22009AE053 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326420CC6E22009AE053 /* util.cpp */; };
 		047B326920CC6E85009AE053 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326820CC6E85009AE053 /* libcurl.tbd */; };
 		047B326C20CC8631009AE053 /* fetch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326A20CC8631009AE053 /* fetch.cpp */; };
 		047B326E20CCBDBD009AE053 /* libuWS.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326D20CCBDBD009AE053 /* libuWS.dylib */; };
 		047B327120CCC815009AE053 /* query.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326F20CCC815009AE053 /* query.cpp */; };
-		047B327320CCCD66009AE053 /* libuv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327220CCCD66009AE053 /* libuv.1.dylib */; };
-		047B327520CCCD83009AE053 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327420CCCD83009AE053 /* libz.1.dylib */; };
-		047B327720CCCD97009AE053 /* libssl.1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */; };
-		047B327920CCD0A4009AE053 /* libjsoncpp.1.8.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */; };
 		049B329020D089280019D52E /* pull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 049B328E20D089280019D52E /* pull.cpp */; };
 		049B329320D08A660019D52E /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 049B329120D08A660019D52E /* patch.cpp */; };
 /* End PBXBuildFile section */
@@ -34,6 +34,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjsoncpp.1.8.4.dylib; path = ../../../../../../usr/local/Cellar/jsoncpp/1.8.4/lib/libjsoncpp.1.8.4.dylib; sourceTree = "<group>"; };
+		041D03DB20D4644C000101A5 /* libuv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libuv.1.dylib; path = ../../../../../../usr/local/Cellar/libuv/1.20.3/lib/libuv.1.dylib; sourceTree = "<group>"; };
+		041D03DD20D4646E000101A5 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
+		041D03DF20D46488000101A5 /* libssl.35.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.35.dylib; path = ../../../../../../usr/lib/libssl.35.dylib; sourceTree = "<group>"; };
+		041D03E320D4775B000101A5 /* Asio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Asio.h; sourceTree = "<group>"; };
+		041D03E420D4775B000101A5 /* Backend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
+		041D03E520D4775B000101A5 /* Epoll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Epoll.h; sourceTree = "<group>"; };
+		041D03E620D4775B000101A5 /* Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Extensions.h; sourceTree = "<group>"; };
+		041D03E720D4775B000101A5 /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		041D03E820D4775B000101A5 /* HTTPSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPSocket.h; sourceTree = "<group>"; };
+		041D03E920D4775B000101A5 /* Hub.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hub.h; sourceTree = "<group>"; };
+		041D03EA20D4775B000101A5 /* Libuv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Libuv.h; sourceTree = "<group>"; };
+		041D03EB20D4775B000101A5 /* Networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
+		041D03EC20D4775B000101A5 /* Node.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		041D03ED20D4775B000101A5 /* Room.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		041D03EE20D4775B000101A5 /* Socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Socket.h; sourceTree = "<group>"; };
+		041D03EF20D4775B000101A5 /* uWS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = uWS.h; sourceTree = "<group>"; };
+		041D03F020D4775B000101A5 /* WebSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
+		041D03F120D4775B000101A5 /* WebSocketProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebSocketProtocol.h; sourceTree = "<group>"; };
 		047B325A20CC6CF7009AE053 /* pvc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pvc; sourceTree = BUILT_PRODUCTS_DIR; };
 		047B325D20CC6CF7009AE053 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		047B326420CC6E22009AE053 /* util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
@@ -59,10 +78,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				047B327920CCD0A4009AE053 /* libjsoncpp.1.8.4.dylib in Frameworks */,
-				047B327720CCCD97009AE053 /* libssl.1.0.0.dylib in Frameworks */,
-				047B327520CCCD83009AE053 /* libz.1.dylib in Frameworks */,
-				047B327320CCCD66009AE053 /* libuv.1.dylib in Frameworks */,
+				041D03E020D46488000101A5 /* libssl.35.dylib in Frameworks */,
+				041D03DE20D4646E000101A5 /* libz.1.dylib in Frameworks */,
+				041D03DC20D4644C000101A5 /* libuv.1.dylib in Frameworks */,
+				041D03DA20D46421000101A5 /* libjsoncpp.1.8.4.dylib in Frameworks */,
 				047B326E20CCBDBD009AE053 /* libuWS.dylib in Frameworks */,
 				047B326920CC6E85009AE053 /* libcurl.tbd in Frameworks */,
 			);
@@ -71,6 +90,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041D03E220D4775B000101A5 /* uWS */ = {
+			isa = PBXGroup;
+			children = (
+				041D03E320D4775B000101A5 /* Asio.h */,
+				041D03E420D4775B000101A5 /* Backend.h */,
+				041D03E520D4775B000101A5 /* Epoll.h */,
+				041D03E620D4775B000101A5 /* Extensions.h */,
+				041D03E720D4775B000101A5 /* Group.h */,
+				041D03E820D4775B000101A5 /* HTTPSocket.h */,
+				041D03E920D4775B000101A5 /* Hub.h */,
+				041D03EA20D4775B000101A5 /* Libuv.h */,
+				041D03EB20D4775B000101A5 /* Networking.h */,
+				041D03EC20D4775B000101A5 /* Node.h */,
+				041D03ED20D4775B000101A5 /* Room.h */,
+				041D03EE20D4775B000101A5 /* Socket.h */,
+				041D03EF20D4775B000101A5 /* uWS.h */,
+				041D03F020D4775B000101A5 /* WebSocket.h */,
+				041D03F120D4775B000101A5 /* WebSocketProtocol.h */,
+			);
+			path = uWS;
+			sourceTree = "<group>";
+		};
 		047B325120CC6CF7009AE053 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +132,7 @@
 		047B325C20CC6CF7009AE053 /* pvc */ = {
 			isa = PBXGroup;
 			children = (
+				041D03E220D4775B000101A5 /* uWS */,
 				047B325D20CC6CF7009AE053 /* main.cpp */,
 				047B326A20CC8631009AE053 /* fetch.cpp */,
 				047B326B20CC8631009AE053 /* fetch.hpp */,
@@ -109,7 +151,11 @@
 		047B326720CC6E85009AE053 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				041D03DF20D46488000101A5 /* libssl.35.dylib */,
+				041D03DD20D4646E000101A5 /* libz.1.dylib */,
+				041D03DB20D4644C000101A5 /* libuv.1.dylib */,
 				047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */,
+				041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */,
 				047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */,
 				047B327420CCCD83009AE053 /* libz.1.dylib */,
 				047B327220CCCD66009AE053 /* libuv.1.dylib */,
