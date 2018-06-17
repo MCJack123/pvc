@@ -38,7 +38,6 @@
 		041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjsoncpp.1.8.4.dylib; path = ../../../../../../usr/local/Cellar/jsoncpp/1.8.4/lib/libjsoncpp.1.8.4.dylib; sourceTree = "<group>"; };
 		041D03DB20D4644C000101A5 /* libuv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libuv.1.dylib; path = ../../../../../../usr/local/Cellar/libuv/1.20.3/lib/libuv.1.dylib; sourceTree = "<group>"; };
 		041D03DD20D4646E000101A5 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
-		041D03DF20D46488000101A5 /* libssl.35.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.35.dylib; path = ../../../../../../usr/lib/libssl.35.dylib; sourceTree = "<group>"; };
 		041D03E320D4775B000101A5 /* Asio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Asio.h; sourceTree = "<group>"; };
 		041D03E420D4775B000101A5 /* Backend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
 		041D03E520D4775B000101A5 /* Epoll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Epoll.h; sourceTree = "<group>"; };
@@ -67,10 +66,6 @@
 		047B326D20CCBDBD009AE053 /* libuWS.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libuWS.dylib; sourceTree = "<group>"; };
 		047B326F20CCC815009AE053 /* query.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = query.cpp; sourceTree = "<group>"; };
 		047B327020CCC815009AE053 /* query.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = query.hpp; sourceTree = "<group>"; };
-		047B327220CCCD66009AE053 /* libuv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libuv.1.dylib; path = ../../../../../usr/local/Cellar/libuv/1.20.3/lib/libuv.1.dylib; sourceTree = "<group>"; };
-		047B327420CCCD83009AE053 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
-		047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.0.0.dylib; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_1/lib/libssl.1.0.0.dylib; sourceTree = "<group>"; };
-		047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjsoncpp.1.8.4.dylib; path = ../../../../../usr/local/Cellar/jsoncpp/1.8.4/lib/libjsoncpp.1.8.4.dylib; sourceTree = "<group>"; };
 		049B328E20D089280019D52E /* pull.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pull.cpp; sourceTree = "<group>"; };
 		049B328F20D089280019D52E /* pull.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pull.hpp; sourceTree = "<group>"; };
 		049B329120D08A660019D52E /* patch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = patch.cpp; sourceTree = "<group>"; };
@@ -158,14 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				041D03F620D4BAC0000101A5 /* libssl.1.0.0.dylib */,
-				041D03DF20D46488000101A5 /* libssl.35.dylib */,
 				041D03DD20D4646E000101A5 /* libz.1.dylib */,
 				041D03DB20D4644C000101A5 /* libuv.1.dylib */,
-				047B327820CCD0A3009AE053 /* libjsoncpp.1.8.4.dylib */,
 				041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */,
-				047B327620CCCD97009AE053 /* libssl.1.0.0.dylib */,
-				047B327420CCCD83009AE053 /* libz.1.dylib */,
-				047B327220CCCD66009AE053 /* libuv.1.dylib */,
 				047B326D20CCBDBD009AE053 /* libuWS.dylib */,
 				047B326820CC6E85009AE053 /* libcurl.tbd */,
 			);

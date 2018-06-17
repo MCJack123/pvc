@@ -19,10 +19,19 @@ struct local_repo_info {
 	commits commits;
 };
 
-// Keeps track of if the server is running. Change to false to stop the server.
-static bool serverIsRunning;
+// Keeps track of if the server is running.
+extern bool serverIsRunning;
+
+// The main server hub.
+extern uWS::Hub h;
+
+// A list of repos currently being served. Add to the map to register a repo.
+extern std::map<std::string, local_repo_info> reposServed;
 
 // The main server loop.
-void runServer(local_repo_info repo);
+void runServer();
+
+// Stops the server if it's running. (Works with signal(int, void(int)))
+void stopServer(int param);
 
 #endif /* serve_hpp */

@@ -14,26 +14,26 @@ bool queryURL(std::string url) {
 }
 
 bool queryRepo(std::string url, std::string name) {
-	if (!queryURL(url)) return false;
+	if (!queryURL(url)) {log("queryRepo: url " + url + " is down", MESSAGE_LOG); return false;}
 	http_response resp = http_get(url + "/repos/" + name);
 	return resp.ok && resp.response_code == 200;
 }
 
 strvec getRepos(std::string url) {
-    if (!queryURL(url)) return {};
+	if (!queryURL(url)) {log("queryRepo: url " + url + " is down", MESSAGE_LOG); return {};}
     strvec retval;
     http_response resp = http_get(url + "/repos");
     if (resp.ok && resp.response_code == 200) {
         std::stringstream ss((char*)resp.data);
         std::string to;
         while (std::getline(ss, to, '\n')) retval.push_back(to);
-    }
+	} else log("getRepos: returned response code " + std::to_string(resp.response_code), MESSAGE_LOG);
     return retval;
 }
 
 repo_info getInfo(std::string url, std::string name) {
     repo_info retval;
-    if (!queryURL(url)) return retval;
+	if (!queryURL(url)) {log("queryRepo: url " + url + " is down", MESSAGE_LOG); return retval;}
     http_response resp = http_get(url + "/repos/" + name);
     if (resp.ok && resp.response_code == 200) {
         retval.nodes.push_back(url);
@@ -42,6 +42,6 @@ repo_info getInfo(std::string url, std::string name) {
         retval.creator = info["creator"].asString();
         retval.commits = info["commits"].asInt();
         for (int i = 0; i < info["nodes"].size(); i++) retval.nodes.push_back(info["nodes"][i].asString());
-    }
+    } else log("getInfo: returned response code " + std::to_string(resp.response_code), MESSAGE_LOG);
     return retval;
 }

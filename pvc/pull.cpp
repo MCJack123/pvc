@@ -14,11 +14,11 @@ bool sortCommits(commit first, commit second) {
 
 strvec resolveNodes(std::string url, std::string name, bool recurse) {
     strvec retval;
-    if (!queryURL(url) || !queryRepo(url, name)) return retval;
+	if (!queryURL(url) || !queryRepo(url, name)) {log("resolveNodes: node " + url + " missing repo " + name, MESSAGE_LOG); return retval;}
     repo_info info = getInfo(url, name);
     retval.push_back(url);
     for (std::string node : info.nodes) {
-        if (!queryURL(node)) continue;
+		if (!queryURL(node)) {log("resolveNodes: extra node " + url + " is down", MESSAGE_DEBUG); continue;}
         strvec repos = getRepos(node);
         if (std::find(repos.begin(), repos.end(), name) == repos.end()) continue;
         retval.push_back(node);
@@ -41,7 +41,7 @@ commits getCommits(repo_info repo) {
 	strvec keys;
 	int total = 0;
 	for (std::string node : repo.nodes) {
-		if (!queryURL(node) || !queryRepo(node, repo.name)) continue;
+		if (!queryURL(node) || !queryRepo(node, repo.name)) {log("getCommits: node " + node + " missing repo " + repo.name, MESSAGE_LOG); continue;}
 		http_response resp = http_get(node + "/repos/" + repo.name + "/commits");
 		if (resp.ok && resp.response_code == 200) {
 			Json::Value root = parseJSON(std::string(const_cast<const char *>((char*)resp.data), resp.size));
@@ -69,7 +69,7 @@ commits getCommits(repo_info repo) {
 				comcount[root["commits"][i]["id"].asString()]++;
 			}
 			total++;
-		}
+		} else log("getCommits: returned response code " + std::to_string(resp.response_code) + " on node " + node, MESSAGE_LOG);
 	}
 	for (auto i = comcount.begin(); i != comcount.end(); i++)
 		if (i->second < total / 2)

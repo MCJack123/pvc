@@ -8,6 +8,8 @@
 
 #include "util.hpp"
 
+int messageLevel = 0;
+
 typedef struct {
     char * data;
     size_t size;
@@ -15,13 +17,22 @@ typedef struct {
 } http_read_buffer;
 
 size_t write_data(void * buffer, size_t size, size_t nmemb, void * userp) {
+	//log("Got new block to write", MESSAGE_DEBUG);
     if (size * nmemb == 0) return 0;
     http_response * resp = (http_response*)userp;
-    void * temp = malloc(resp->size + (size * nmemb));
-    memcpy(temp, resp->data, resp->size);
-    memcpy((void*)&((char*)temp)[resp->size], buffer, size * nmemb);
-    resp->data = temp;
-    resp->size += size * nmemb;
+	if (resp->size > 0) {
+    	void * temp = malloc(resp->size + (size * nmemb));
+		memcpy(temp, resp->data, resp->size);
+    	memcpy((void*)&((char*)temp)[resp->size], buffer, size * nmemb);
+		resp->size += size * nmemb;
+		resp->data = malloc(resp->size);
+    	memcpy(resp->data, temp, resp->size);
+		free(temp);
+	} else {
+		resp->size = size * nmemb;
+		resp->data = malloc(resp->size);
+		memcpy(resp->data, buffer, resp->size);
+	}
     return size * nmemb;
 }
 
@@ -34,9 +45,34 @@ size_t read_data(char * buffer, size_t size, size_t nitems, void * instream) {
     return (size * nitems > buf->size ? buf->size - (size * nitems) : size * nitems);
 }
 
+void log(std::string text, message_level level) {
+	switch (level) {
+		case MESSAGE_DEBUG:
+			if (messageLevel <= -1) std::cout << "[DEBUG] " << text << "\n";
+			break;
+		case MESSAGE_LOG:
+			if (messageLevel <= 0) std::cout << "[LOG] " << text << "\n";
+			break;
+		case MESSAGE_WARNING:
+			if (messageLevel <= 1) std::cerr << "[WARNING]" << text << "\n";
+			break;
+		case MESSAGE_ERROR:
+			std::cerr << "[ERROR] " << text << "\n";
+			break;
+		case MESSAGE_FATAL:
+			std::cerr << "[FATAL] " << text << "\n";
+			break;
+	}
+}
+
+size_t find_first_of(std::string str, std::string c) {
+	return (str.find_first_of(c) == std::string::npos ? str.size() : str.find_first_of(c));
+}
+
 http_response http_get(std::string url) {
     http_response retval;
     CURL * handle;
+	retval.size = 0;
     handle = curl_easy_init();
     curl_easy_setopt(handle, CURLOPT_URL, url.c_str());
     curl_easy_setopt(handle, CURLOPT_PORT, 28100);
@@ -86,6 +122,7 @@ void * readFile(std::string file) {
         char * ibuf = (char*)malloc(512);
         in.read(ibuf, 512);
         write_data((void*)ibuf, 1, in.gcount(), (void*)&buf);
+		free((void*)ibuf);
     }
     void * retval = malloc(buf.size + 4);
     ((long*)buf.data)[0] = buf.size;
@@ -102,14 +139,14 @@ void writeFile(std::string file, void * data, size_t size) {
 url_descriptor parseURL(std::string url) {
     url_descriptor retval;
     retval.full_url = url;
-    retval.uri = url.substr(0, url.find_first_of("/"));
-    retval.endpoint = url.substr(url.find_first_of("/"), url.find_first_of("?") - url.find_first_of("/"));
-    std::string querystr = url.substr(url.find_first_of("?")); 
-    std::stringstream ss(querystr.c_str());
-    std::string to;
-    while (std::getline(ss, to, '&')) {
-        retval.query[to.substr(0, to.find_first_of("="))] = to.substr(to.find_first_of("="));
-    }
+    retval.uri = url.substr(0, find_first_of(url, "/"));
+    retval.endpoint = url.substr(find_first_of(url, "/"), find_first_of(url, "?") - find_first_of(url, "/"));
+	if (url.find_first_of("?") != std::string::npos) {
+		std::string querystr = url.substr(find_first_of(url, "?"));
+		std::stringstream ss(querystr.c_str());
+		std::string to;
+		while (std::getline(ss, to, '&')) retval.query[to.substr(0, to.find_first_of("="))] = to.substr(to.find_first_of("="));
+	}
     return retval;
 }
 
@@ -120,13 +157,22 @@ Json::Value parseJSON(std::string json) {
     return root;
 }
 
+std::string stringifyJSON(Json::Value root) {
+	std::stringstream ss;
+	ss << root;
+	return ss.str();
+}
+
 std::string convertFileData(void * filepointer2) {
     char * filepointer = (char*)filepointer2;
     int32_t size = ((int32_t*)filepointer)[0];
     char * filedata = (char*)malloc(size + 1);
     memcpy((void*)filedata, (void*)&filepointer[4], size);
     filedata[size] = '\0';
-    return std::string(const_cast<const char *>(filedata));
+    std::string retval(const_cast<const char *>(filedata));
+	free(filedata);
+	free(filepointer2);
+	return retval;
 }
 
 #if defined(__WIN32__) || defined(__WIN64__)

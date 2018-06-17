@@ -15,6 +15,8 @@
 #else
 #define TEMP_DIR "/var/tmp/"
 #endif
+#define JSONOBJ Json::Value(Json::objectValue)
+#define JSONARR Json::Value(Json::arrayValue)
 
 #include <json/json.h>
 #include <curl/curl.h>
@@ -41,7 +43,21 @@ struct url_descriptor {
     std::map<std::string, std::string> query;
 };
 
+typedef enum {
+	MESSAGE_DEBUG,
+	MESSAGE_LOG,
+	MESSAGE_WARNING,
+	MESSAGE_ERROR,
+	MESSAGE_FATAL
+} message_level;
+
 typedef std::vector<std::string> strvec;
+
+// The level of logging that will be displayed. -1 = debugging, 0 = normal, 1 = suppress logs, 2 = suppress warnings
+extern int messageLevel;
+
+// Logs the output depending on mode.
+void log(std::string text, message_level level);
 
 // Sends an HTTP GET request to url.
 http_response http_get(std::string url);
@@ -61,6 +77,9 @@ url_descriptor parseURL(std::string url);
 // Parses a json string.
 Json::Value parseJSON(std::string json);
 
+// Serializes a json value.
+std::string stringifyJSON(Json::Value root);
+
 // Converts file data to string.
 std::string convertFileData(void * filepointer2);
 
@@ -69,5 +88,16 @@ strvec listDir(std::string directory);
 
 // Checks if a file exists.
 bool fileExists(std::string name);
+
+// find_first_of, but returns str.size() instead of std::string::npos.
+size_t find_first_of(std::string str, std::string c);
+
+// Gets all keys in a map.
+template <typename K, typename V>
+std::vector<K> getAllKeys(std::map<K, V> m) {
+	std::vector<K> v;
+	for (typename std::map<K, V>::iterator it = m.begin(); it != m.end(); ++it) v.push_back(it->first);
+	return v;
+}
 
 #endif /* util_hpp */
