@@ -16,7 +16,9 @@ typedef enum {
     PATCH_ADD_LINE,
     PATCH_DEL_LINE,
     PATCH_EDIT_LINE,
-    PATCH_NEW_FILE
+    PATCH_NEW_FILE,
+	PATCH_DEL_FILE,
+	PATCH_NEW_DIR
 } patch_type;
 
 struct patch {

@@ -69,13 +69,13 @@ size_t find_first_of(std::string str, std::string c) {
 	return (str.find_first_of(c) == std::string::npos ? str.size() : str.find_first_of(c));
 }
 
-http_response http_get(std::string url) {
+http_response http_get(std::string url, int port) {
     http_response retval;
     CURL * handle;
 	retval.size = 0;
     handle = curl_easy_init();
     curl_easy_setopt(handle, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(handle, CURLOPT_PORT, 28100);
+    curl_easy_setopt(handle, CURLOPT_PORT, port);
     curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_data);
     curl_easy_setopt(handle, CURLOPT_WRITEDATA, &retval);
     CURLcode result = curl_easy_perform(handle);
@@ -175,7 +175,7 @@ std::string convertFileData(void * filepointer2) {
 	return retval;
 }
 
-#if defined(__WIN32__) || defined(__WIN64__)
+#if defined(__WIN32) || defined(__WIN64)
 #include <windows.h>
 strvec listDir(std::string directory) {
     strvec v;
@@ -199,6 +199,10 @@ bool fileExists (std::string name) {
 		return false;
 	}
 }
+
+bool isDirectory(std::string path) {
+	return PathIsDirectory((LPCTSTR)path.c_str());
+}
 #else
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -208,7 +212,11 @@ strvec listDir(std::string directory) {
     DIR* dirp = opendir(directory.c_str());
     struct dirent * dp;
     while ((dp = readdir(dirp)) != NULL) {
-        v.push_back(dp->d_name);
+		if (isDirectory(std::string(dp->d_name))) {
+			strvec ne = listDir(directory + "/" + dp->d_name);
+			v.insert(v.end(), ne.begin(), ne.end());
+		}
+		v.push_back(dp->d_name);
     }
     closedir(dirp);
     return v;
@@ -217,5 +225,11 @@ strvec listDir(std::string directory) {
 bool fileExists (std::string name) {
 	struct stat buffer;
 	return (stat (name.c_str(), &buffer) == 0);
+}
+
+bool isDirectory(std::string path) {
+	struct stat s;
+	stat(path.c_str(), &s);
+	return s.st_mode & S_IFDIR;
 }
 #endif

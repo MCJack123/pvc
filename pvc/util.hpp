@@ -60,7 +60,7 @@ extern int messageLevel;
 void log(std::string text, message_level level);
 
 // Sends an HTTP GET request to url.
-http_response http_get(std::string url);
+http_response http_get(std::string url, int port = 28100);
 
 // Sends an HTTP POST request with data to url.
 http_response http_post(std::string url, void * data, size_t size);
@@ -88,6 +88,9 @@ strvec listDir(std::string directory);
 
 // Checks if a file exists.
 bool fileExists(std::string name);
+
+// Checks if a path is a directory.
+bool isDirectory(std::string path);
 
 // find_first_of, but returns str.size() instead of std::string::npos.
 size_t find_first_of(std::string str, std::string c);

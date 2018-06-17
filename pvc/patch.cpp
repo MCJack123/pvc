@@ -25,6 +25,10 @@ std::string applyPatch(std::string text, patch p, int baseline) {
                     break;
                 case PATCH_NEW_FILE:
                     return p.content;
+				case PATCH_DEL_FILE:
+					return "";
+				case PATCH_NEW_DIR:
+					break;
             }
         } else retval += line + "\n";
     }
@@ -44,9 +48,8 @@ std::string applyPatches(std::string text, std::vector<patch> p) {
 
 void patchFile(std::string filename, std::vector<patch> p) {
 	log("Patching file " + filename, MESSAGE_DEBUG);
-	//log(filename.substr(filename.find_last_of("/")), MESSAGE_DEBUG);
     std::string file;
-	for (std::vector<patch>::iterator it = p.begin(); it != p.end(); it++) if (it->filename != filename.substr(filename.find_last_of("/") + 1)) {p.erase(it); log("Not patching " + it->filename, MESSAGE_DEBUG);}
+	for (std::vector<patch>::iterator it = p.begin(); it != p.end(); it++) if (filename.find_last_of(it->filename) == std::string::npos) {p.erase(it); log("Not patching " + it->filename, MESSAGE_DEBUG);}
     if (p[0].type == PATCH_NEW_FILE) file = p[0].content;
     else file = applyPatches(convertFileData(readFile(filename)), p);
     char * data = (char*)malloc(file.size() + 1);
@@ -61,6 +64,7 @@ int patchDir(std::string dirname, std::vector<patch> p) {
     strvec files = listDir(dirname);
     std::map<std::string, std::vector<patch>> filesplit;
     for (patch pa : p) {
+		if (pa.type == PATCH_NEW_DIR) {mkdir(std::string(dirname + "/" + pa.filename).c_str(), 0777); continue;}
         if (std::find(files.begin(), files.end(), pa.filename) == files.end() && pa.type != PATCH_NEW_FILE) {patches--; break;}
         if (filesplit.find(pa.filename) == filesplit.end()) filesplit[pa.filename] = std::vector<patch>();
         filesplit[pa.filename].push_back(pa);
