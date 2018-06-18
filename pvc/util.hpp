@@ -103,4 +103,7 @@ std::vector<K> getAllKeys(std::map<K, V> m) {
 	return v;
 }
 
+// Counts all instances of sub in str.
+int countInstances(std::string str, std::string sub);
+
 #endif /* util_hpp */

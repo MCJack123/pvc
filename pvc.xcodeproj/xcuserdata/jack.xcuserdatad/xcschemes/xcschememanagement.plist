@@ -7,17 +7,27 @@
 		<key>pvc.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>pvcdiff.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+		<key>pvcpatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0412614520D603B00098097B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0412616020D6DF340098097B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -12,11 +12,14 @@ std::string applyPatch(std::string text, patch p, int baseline) {
 	log("Applying patch for file " + p.filename, MESSAGE_DEBUG);
     std::stringstream ss(text.c_str());
     std::string line, retval = "";
+	int lines = 1;
+	bool patched = false;
     for (int i = 1 + baseline; std::getline(ss, line, '\n'); i++) {
-        if (i == p.lineno) {
+		lines++;
+		if (i == p.lineno) {
             switch (p.type) {
                 case PATCH_ADD_LINE:
-                    retval += line + "\n" + p.content + "\n";
+                    retval += p.content + "\n" + line + "\n";
                     break;
                 case PATCH_DEL_LINE:
                     break;
@@ -30,8 +33,14 @@ std::string applyPatch(std::string text, patch p, int baseline) {
 				case PATCH_NEW_DIR:
 					break;
             }
+			patched = true;
         } else retval += line + "\n";
     }
+	if (!patched && p.type == PATCH_ADD_LINE) {
+		while (lines++ < p.lineno)
+			retval += "\n";
+		retval += p.content;
+	}
     return retval;
 }
 
@@ -39,22 +48,22 @@ std::string applyPatches(std::string text, std::vector<patch> p) {
     std::string retval = text;
     int baseline = 0;
     for (patch pa : p) {
-        retval = applyPatch(retval, pa, baseline);
+        retval = applyPatch(retval, pa/*, baseline*/);
         if (pa.type == PATCH_ADD_LINE) baseline++;
         else if (pa.type == PATCH_DEL_LINE) baseline--;
     }
     return retval;
 }
 
-void patchFile(std::string filename, std::vector<patch> p) {
+void patchFile(std::string filename, std::vector<patch> p, bool checkName) {
 	log("Patching file " + filename, MESSAGE_DEBUG);
     std::string file;
-	for (std::vector<patch>::iterator it = p.begin(); it != p.end(); it++) if (filename.find_last_of(it->filename) == std::string::npos) {p.erase(it); log("Not patching " + it->filename, MESSAGE_DEBUG);}
+	if (checkName) for (std::vector<patch>::iterator it = p.begin(); it != p.end(); it++) if (filename.find_last_of(it->filename) == std::string::npos) {p.erase(it); log("Not patching " + it->filename, MESSAGE_DEBUG);}
     if (p[0].type == PATCH_NEW_FILE) file = p[0].content;
     else file = applyPatches(convertFileData(readFile(filename)), p);
-    char * data = (char*)malloc(file.size() + 1);
+    char * data = (char*)malloc(file.size());
     strcpy(data, file.c_str());
-    writeFile(filename, (void*)data, file.size() + 1);
+    writeFile(filename, (void*)data, file.size());
 	free((void*)data);
 }
 

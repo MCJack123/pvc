@@ -9,12 +9,9 @@
 /* Begin PBXBuildFile section */
 		0412613D20D5EA6C0098097B /* diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0412613B20D5EA6C0098097B /* diff.cpp */; };
 		0412614020D5ED910098097B /* commit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0412613E20D5ED910098097B /* commit.cpp */; };
-		0412614920D603B00098097B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0412614820D603B00098097B /* main.cpp */; };
 		0412614D20D609790098097B /* diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0412613B20D5EA6C0098097B /* diff.cpp */; };
 		0412614E20D609840098097B /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 049B329120D08A660019D52E /* patch.cpp */; };
 		0412614F20D609890098097B /* commit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0412613E20D5ED910098097B /* commit.cpp */; };
-		0412615020D6099C0098097B /* serve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 041D03F220D4A72F000101A5 /* serve.cpp */; };
-		0412615120D609A40098097B /* pull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 049B328E20D089280019D52E /* pull.cpp */; };
 		0412615220D609A70098097B /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326420CC6E22009AE053 /* util.cpp */; };
 		0412615320D60AF10098097B /* libssl.1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03F620D4BAC0000101A5 /* libssl.1.0.0.dylib */; };
 		0412615420D60AF50098097B /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03DD20D4646E000101A5 /* libz.1.dylib */; };
@@ -22,6 +19,18 @@
 		0412615620D60AF90098097B /* libjsoncpp.1.8.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */; };
 		0412615720D60AFB0098097B /* libuWS.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326D20CCBDBD009AE053 /* libuWS.dylib */; };
 		0412615820D60AFD0098097B /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326820CC6E85009AE053 /* libcurl.tbd */; };
+		0412615B20D6C7250098097B /* query.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326F20CCC815009AE053 /* query.cpp */; };
+		0412615C20D6C82D0098097B /* pull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 049B328E20D089280019D52E /* pull.cpp */; };
+		0412616A20D6E2120098097B /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 049B329120D08A660019D52E /* patch.cpp */; };
+		0412616B20D6E2170098097B /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 047B326420CC6E22009AE053 /* util.cpp */; };
+		0412616C20D6E3380098097B /* libssl.1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03F620D4BAC0000101A5 /* libssl.1.0.0.dylib */; };
+		0412616D20D6E33A0098097B /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03DD20D4646E000101A5 /* libz.1.dylib */; };
+		0412616E20D6E33B0098097B /* libuv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03DB20D4644C000101A5 /* libuv.1.dylib */; };
+		0412616F20D6E33D0098097B /* libjsoncpp.1.8.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */; };
+		0412617020D6E33F0098097B /* libuWS.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326D20CCBDBD009AE053 /* libuWS.dylib */; };
+		0412617120D6E3420098097B /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B326820CC6E85009AE053 /* libcurl.tbd */; };
+		0412617620D72EDC0098097B /* pvcpatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0412616820D6DF550098097B /* pvcpatch.cpp */; };
+		0412617920D734610098097B /* pvcdiff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0412615920D6C5590098097B /* pvcdiff.cpp */; };
 		041D03DA20D46421000101A5 /* libjsoncpp.1.8.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */; };
 		041D03DC20D4644C000101A5 /* libuv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 041D03DB20D4644C000101A5 /* libuv.1.dylib */; };
 		041D03F420D4A72F000101A5 /* serve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 041D03F220D4A72F000101A5 /* serve.cpp */; };
@@ -39,6 +48,15 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0412614420D603B00098097B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		0412615F20D6DF340098097B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -65,7 +83,9 @@
 		0412613F20D5ED910098097B /* commit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = commit.hpp; sourceTree = "<group>"; };
 		0412614120D5F0670098097B /* picosha2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = picosha2.hpp; sourceTree = "<group>"; };
 		0412614620D603B00098097B /* pvcdiff */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pvcdiff; sourceTree = BUILT_PRODUCTS_DIR; };
-		0412614820D603B00098097B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		0412615920D6C5590098097B /* pvcdiff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pvcdiff.cpp; sourceTree = "<group>"; };
+		0412616120D6DF340098097B /* pvcpatch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pvcpatch; sourceTree = BUILT_PRODUCTS_DIR; };
+		0412616820D6DF550098097B /* pvcpatch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pvcpatch.cpp; sourceTree = "<group>"; };
 		041D03D920D46420000101A5 /* libjsoncpp.1.8.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjsoncpp.1.8.4.dylib; path = ../../../../../../usr/local/Cellar/jsoncpp/1.8.4/lib/libjsoncpp.1.8.4.dylib; sourceTree = "<group>"; };
 		041D03DB20D4644C000101A5 /* libuv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libuv.1.dylib; path = ../../../../../../usr/local/Cellar/libuv/1.20.3/lib/libuv.1.dylib; sourceTree = "<group>"; };
 		041D03DD20D4646E000101A5 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
@@ -117,6 +137,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0412615E20D6DF340098097B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0412616C20D6E3380098097B /* libssl.1.0.0.dylib in Frameworks */,
+				0412616D20D6E33A0098097B /* libz.1.dylib in Frameworks */,
+				0412616E20D6E33B0098097B /* libuv.1.dylib in Frameworks */,
+				0412616F20D6E33D0098097B /* libjsoncpp.1.8.4.dylib in Frameworks */,
+				0412617020D6E33F0098097B /* libuWS.dylib in Frameworks */,
+				0412617120D6E3420098097B /* libcurl.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		047B325720CC6CF7009AE053 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -133,12 +166,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0412614720D603B00098097B /* pvcdiff */ = {
+		0412617320D72E3F0098097B /* Main Programs */ = {
 			isa = PBXGroup;
 			children = (
-				0412614820D603B00098097B /* main.cpp */,
+				047B325D20CC6CF7009AE053 /* main.cpp */,
+				0412615920D6C5590098097B /* pvcdiff.cpp */,
+				0412616820D6DF550098097B /* pvcpatch.cpp */,
 			);
-			path = pvcdiff;
+			name = "Main Programs";
 			sourceTree = "<group>";
 		};
 		041D03E220D4775B000101A5 /* uWS */ = {
@@ -167,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				047B325C20CC6CF7009AE053 /* pvc */,
-				0412614720D603B00098097B /* pvcdiff */,
 				047B325B20CC6CF7009AE053 /* Products */,
 				047B326720CC6E85009AE053 /* Frameworks */,
 			);
@@ -178,6 +212,7 @@
 			children = (
 				047B325A20CC6CF7009AE053 /* pvc */,
 				0412614620D603B00098097B /* pvcdiff */,
+				0412616120D6DF340098097B /* pvcpatch */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,8 +220,8 @@
 		047B325C20CC6CF7009AE053 /* pvc */ = {
 			isa = PBXGroup;
 			children = (
+				0412617320D72E3F0098097B /* Main Programs */,
 				041D03E220D4775B000101A5 /* uWS */,
-				047B325D20CC6CF7009AE053 /* main.cpp */,
 				0412613E20D5ED910098097B /* commit.cpp */,
 				0412613F20D5ED910098097B /* commit.hpp */,
 				0412613B20D5EA6C0098097B /* diff.cpp */,
@@ -241,6 +276,23 @@
 			productReference = 0412614620D603B00098097B /* pvcdiff */;
 			productType = "com.apple.product-type.tool";
 		};
+		0412616020D6DF340098097B /* pvcpatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0412616520D6DF340098097B /* Build configuration list for PBXNativeTarget "pvcpatch" */;
+			buildPhases = (
+				0412615D20D6DF340098097B /* Sources */,
+				0412615E20D6DF340098097B /* Frameworks */,
+				0412615F20D6DF340098097B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pvcpatch;
+			productName = pvcpatch;
+			productReference = 0412616120D6DF340098097B /* pvcpatch */;
+			productType = "com.apple.product-type.tool";
+		};
 		047B325920CC6CF7009AE053 /* pvc */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 047B326120CC6CF7009AE053 /* Build configuration list for PBXNativeTarget "pvc" */;
@@ -270,6 +322,9 @@
 					0412614520D603B00098097B = {
 						CreatedOnToolsVersion = 10.0;
 					};
+					0412616020D6DF340098097B = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					047B325920CC6CF7009AE053 = {
 						CreatedOnToolsVersion = 9.4;
 					};
@@ -289,6 +344,7 @@
 			targets = (
 				047B325920CC6CF7009AE053 /* pvc */,
 				0412614520D603B00098097B /* pvcdiff */,
+				0412616020D6DF340098097B /* pvcpatch */,
 			);
 		};
 /* End PBXProject section */
@@ -298,13 +354,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0412615020D6099C0098097B /* serve.cpp in Sources */,
+				0412617920D734610098097B /* pvcdiff.cpp in Sources */,
+				0412615C20D6C82D0098097B /* pull.cpp in Sources */,
+				0412615B20D6C7250098097B /* query.cpp in Sources */,
 				0412614F20D609890098097B /* commit.cpp in Sources */,
 				0412615220D609A70098097B /* util.cpp in Sources */,
-				0412615120D609A40098097B /* pull.cpp in Sources */,
 				0412614D20D609790098097B /* diff.cpp in Sources */,
-				0412614920D603B00098097B /* main.cpp in Sources */,
 				0412614E20D609840098097B /* patch.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0412615D20D6DF340098097B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0412616A20D6E2120098097B /* patch.cpp in Sources */,
+				0412616B20D6E2170098097B /* util.cpp in Sources */,
+				0412617620D72EDC0098097B /* pvcpatch.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +418,45 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/usr/local/Cellar/openssl/1.0.2o_1/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/openssl/1.0.2o_1/lib,
+					/usr/local/Cellar/libuv/1.20.3/lib,
+					/usr/local/Cellar/jsoncpp/1.8.4/lib,
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0412616620D6DF340098097B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/usr/local/Cellar/openssl/1.0.2o_1/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/openssl/1.0.2o_1/lib,
+					/usr/local/Cellar/libuv/1.20.3/lib,
+					/usr/local/Cellar/jsoncpp/1.8.4/lib,
+					"$(PROJECT_DIR)",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0412616720D6DF340098097B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
@@ -523,6 +628,15 @@
 			buildConfigurations = (
 				0412614B20D603B00098097B /* Debug */,
 				0412614C20D603B00098097B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0412616520D6DF340098097B /* Build configuration list for PBXNativeTarget "pvcpatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0412616620D6DF340098097B /* Debug */,
+				0412616720D6DF340098097B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

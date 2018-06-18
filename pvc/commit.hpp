@@ -10,9 +10,8 @@
 #ifndef commit_hpp
 #define commit_hpp
 
-#include "serve.hpp"
 #include "patch.hpp"
-#include "diff.hpp"
+#include "query.hpp"
 #include "picosha2.hpp"
 #include <chrono>
 #include <iomanip>
@@ -40,6 +39,12 @@ struct special_commit : commit {
 }; // idk, whatever
 
 typedef std::vector<commit> commits;
+
+struct local_repo_info {
+	std::string name;
+	repo_info info;
+	commits commits;
+};
 
 // Creates a commit at the current time.
 commit createCommit(std::vector<patch> patches, std::string creator, std::string title, std::string description = "", std::string creator_signature = "");

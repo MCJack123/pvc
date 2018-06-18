@@ -12,12 +12,7 @@
 
 #include "util.h"
 #include "pull.hpp"
-
-struct local_repo_info {
-	std::string name;
-	repo_info info;
-	commits commits;
-};
+#include "query.hpp"
 
 // Keeps track of if the server is running.
 extern bool serverIsRunning;

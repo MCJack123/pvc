@@ -11,7 +11,6 @@
 #define fetch_hpp
 
 #include "pull.hpp"
-#include "serve.hpp"
 
 // The repository info can be stored either as a single node's IP or as part of a node service.
 // After one node is discovered, the rest are searched for from the first one.

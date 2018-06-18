@@ -10,8 +10,8 @@
 #ifndef diff_hpp
 #define diff_hpp
 
-#include "patch.hpp"
 #include "commit.hpp"
+#include "patch.hpp"
 
 // Creates a list of patches between two strings.
 std::vector<patch> diffStrings(std::string text1, std::string text2);

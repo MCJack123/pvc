@@ -35,7 +35,7 @@ std::string applyPatch(std::string text, patch p, int baseline = 0);
 std::string applyPatches(std::string text, std::vector<patch> p);
 
 // Applies multiple patches to a file.
-void patchFile(std::string filename, std::vector<patch> p);
+void patchFile(std::string filename, std::vector<patch> p, bool checkName = true);
 
 // Applies multiple patches to a directory, checking filenames as needed.
 int patchDir(std::string dirname, std::vector<patch> p);

@@ -51,16 +51,17 @@ void log(std::string text, message_level level) {
 			if (messageLevel <= -1) std::cout << "[DEBUG] " << text << "\n";
 			break;
 		case MESSAGE_LOG:
-			if (messageLevel <= 0) std::cout << "[LOG] " << text << "\n";
+			if (messageLevel <= 0) std::cout << "[\x1b[36mLOG\x1b[0m] " << text << "\n";
 			break;
 		case MESSAGE_WARNING:
-			if (messageLevel <= 1) std::cerr << "[WARNING]" << text << "\n";
+			if (messageLevel <= 1) std::cerr << "[\x1b[33mWARNING\x1b[0m] " << text << "\n";
 			break;
 		case MESSAGE_ERROR:
-			std::cerr << "[ERROR] " << text << "\n";
+			std::cerr << "[\x1b[31mERROR\x1b[0m] " << text << "\n";
 			break;
 		case MESSAGE_FATAL:
-			std::cerr << "[FATAL] " << text << "\n";
+			std::cerr << "\x1b[91m[FATAL\x1b[0m] " << text << "\n";
+			exit(8);
 			break;
 	}
 }
@@ -116,17 +117,22 @@ http_response http_post(std::string url, void * data, size_t size) {
 }
 
 void * readFile(std::string file) {
-    std::ifstream in(file.c_str());
-    http_response buf;
+	std::ifstream in(file.c_str(), std::ios::ate);
+	if (!in.good()) log("Failed to open file " + file, MESSAGE_FATAL);
+	size_t size = in.tellg();
+	in.seekg(0);
+	void * retval = malloc(size + sizeof(long));
+	int i = sizeof(long);
     while (!in.eof()) {
         char * ibuf = (char*)malloc(512);
         in.read(ibuf, 512);
-        write_data((void*)ibuf, 1, in.gcount(), (void*)&buf);
+		size_t r = in.gcount();
+		memcpy((void*)&((char*)retval)[i], ibuf, r);
+		i += r;
 		free((void*)ibuf);
     }
-    void * retval = malloc(buf.size + 4);
-    ((long*)buf.data)[0] = buf.size;
-    memcpy((void*)&((char*)retval)[4], buf.data, buf.size);
+	//assert(i == size);
+    ((long*)retval)[0] = size;
     return retval;
 }
 
@@ -165,14 +171,21 @@ std::string stringifyJSON(Json::Value root) {
 
 std::string convertFileData(void * filepointer2) {
     char * filepointer = (char*)filepointer2;
-    int32_t size = ((int32_t*)filepointer)[0];
+    long size = ((long*)filepointer)[0];
     char * filedata = (char*)malloc(size + 1);
-    memcpy((void*)filedata, (void*)&filepointer[4], size);
+    memcpy((void*)filedata, (void*)&filepointer[sizeof(long)], size);
     filedata[size] = '\0';
     std::string retval(const_cast<const char *>(filedata));
 	free(filedata);
 	free(filepointer2);
 	return retval;
+}
+
+int countInstances(std::string str, std::string sub) {
+	size_t npos = str.find(sub);
+	int count;
+	for (count = (npos != std::string::npos); npos != std::string::npos; count++, npos = str.find(sub, npos)) ;
+	return count;
 }
 
 #if defined(__WIN32) || defined(__WIN64)
@@ -209,10 +222,15 @@ bool isDirectory(std::string path) {
 #include <dirent.h>
 strvec listDir(std::string directory) {
     strvec v;
+	if (!isDirectory(directory)) {
+		log("Tried to list file " + directory, MESSAGE_WARNING);
+		return v;
+	}
     DIR* dirp = opendir(directory.c_str());
     struct dirent * dp;
     while ((dp = readdir(dirp)) != NULL) {
-		if (isDirectory(std::string(dp->d_name))) {
+		if (std::string(dp->d_name) == "." || std::string(dp->d_name) == "..") continue;
+		if (isDirectory(directory + "/" + std::string(dp->d_name))) {
 			strvec ne = listDir(directory + "/" + dp->d_name);
 			v.insert(v.end(), ne.begin(), ne.end());
 		}
