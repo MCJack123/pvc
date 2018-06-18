@@ -63,11 +63,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "clicktheface.js"
+            argument = "-r"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/jack/Downloads/clicktheface.js"
+            argument = "testrepo"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "testrepop"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

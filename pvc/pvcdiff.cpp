@@ -34,6 +34,6 @@ int main(int argc, const char * argv[]) {
 		root["patches"].append(pval);
 	}
 	std::cout << root << "\n";
-	if (argc > 3 && std::string(argv[3]) == "pause") std::cin.get();
+	if (argc > 3 && (std::string(argv[3]) == "pause" || (argc > 4 && std::string(argv[4]) == "pause"))) std::cin.get();
 	return 0;
 }

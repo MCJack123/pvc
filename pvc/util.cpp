@@ -229,7 +229,7 @@ strvec listDir(std::string directory) {
     DIR* dirp = opendir(directory.c_str());
     struct dirent * dp;
     while ((dp = readdir(dirp)) != NULL) {
-		if (std::string(dp->d_name) == "." || std::string(dp->d_name) == "..") continue;
+		if (std::string(dp->d_name) == "." || std::string(dp->d_name) == ".." || std::string(dp->d_name) == ".DS_Store") continue;
 		if (isDirectory(directory + "/" + std::string(dp->d_name))) {
 			strvec ne = listDir(directory + "/" + dp->d_name);
 			v.insert(v.end(), ne.begin(), ne.end());

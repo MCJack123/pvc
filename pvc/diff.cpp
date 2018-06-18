@@ -95,11 +95,12 @@ std::vector<patch> diffDirs(std::string dir1, std::string dir2) {
 		} else {
 			if (!isDirectory(dir1 + "/" + f) && !isDirectory(dir2 + "/" + f)) {
 				std::vector<patch> v = diffFiles(dir1 + "/" + f, dir2 + "/" + f);
-				for (std::vector<patch>::iterator it = retval.begin(); it != retval.end(); it++) {
+				for (std::vector<patch>::iterator it = v.begin(); it != v.end(); it++) {
 					if (it->filename.find(dir1) != std::string::npos)
 						it->filename.replace(it->filename.begin() + it->filename.find(dir1),\
 											 it->filename.begin() + it->filename.find(dir1) + dir1.size() + 1,\
 											 "");
+					//else log("Directory name not found: " + it->filename, MESSAGE_DEBUG);
 					if (it->filename.find(dir2) != std::string::npos)
 						it->filename.replace(it->filename.begin() + it->filename.find(dir2),\
 											 it->filename.begin() + it->filename.find(dir2) + dir2.size() + 1,\
